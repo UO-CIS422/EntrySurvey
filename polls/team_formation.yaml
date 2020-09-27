@@ -10,6 +10,29 @@
 # range-element ::=  name title value-names
 # text-element ::= name title kind required
 
+- title: "Location"
+  prologue: >
+    Where are you this term?  If you are in a different time
+    zone, please use the free-form fields to tell me where.
+  content-type: range
+  values: ["Eugene", "Pacific time zone",
+           "Another time zone, please describe below"]
+  content:
+    - name: location
+      title: "I will be in ... "
+
+- title: "Meetings"
+  prologue: >
+      Mostly we will meet over Zoom.
+      If you and your teammates are in Eugene, you might be
+      able to meet occasionally face-to-face with distancing and masks.
+      But would you want to?
+  content-type: range
+  values: ["No. Let's stay remote", "Not sure", "Yes!"]
+  content:
+    - name: meetup
+      title: "Meet face-to-face if possible?"
+
 - title: "Languages"
   prologue: >
     Please indicate your familiarity with each
