@@ -1,0 +1,147 @@
+# Yaml spec for a team formation poll for incoming
+# CIS 422 students
+# ----------------
+#  Schema
+# ----------------
+# poll ::= section*
+# section ::= title prologue content
+# content ::= range  range-element*
+#          |  text text-element*
+# range-element ::=  name title value-names
+# text-element ::= name title kind required
+
+- title: "Languages"
+  prologue: >
+    Please indicate your familiarity with each
+    of the following.  Don't be too modest.
+  content-type: range
+  values: [none, some, extensive]
+  content:
+    - name: python
+      title: Python
+    - name: cplusplus
+      title: C++
+    - name: c
+      title: C
+    - name: csharp
+      title: C#
+    - name: java
+      title: Java or Kotlin
+    - name: javascript
+      title: Javascript
+    - name: recent_lang
+      title: Go, Rust, or Swift
+    - name: html
+      title: HTML / CSS
+    - name: shell
+      title: Bash (Unix shell)
+
+- title: Build automation
+  prologue: >
+           Please indicate your familiarity with build
+           automation tools and languages
+  content-type: range
+  values: [ none, some, extensive ]
+  content:
+      - name: make
+        title: Make/CMake or similar
+      - name: other_build
+        title: Other build or CI/CD tools
+
+- title: Database
+  prologue: >
+    Please indicate your familiarity database
+    languages and tools
+  content-type: range
+  values: [ none, some, extensive ]
+  content:
+      - name: sql
+        title: SQL
+      - name: mongo
+        title: MongoDB
+      - name: redis
+        title: Redis
+      - name: firebase
+        title: Firebase
+      - name: dynamo
+        title: Amazon Dynamo
+      - name: gcloud
+        title: Google Cloud datastore
+      - name: other_nosql
+        title: Another NoSQL database or data store
+
+- title: "Web Frameworks (server side/ full stack)"
+  prologue: >
+    Please indicate your proficiency with each
+    of the following.  Don't be too modest.
+  content-type: range
+  values: [none, some, extensive]
+  content:
+    - name: php
+      title: PHP
+    - name: node (js)
+      title: "Node"
+    - name: react
+      title: React (js)
+    - name: angular
+      title: Angular (js)
+    - name: web_other_js
+      title: Other Javascript framework
+    - name: flask
+      title: Flask (Python)
+    - name: django
+      title: Django (Python)
+    - name: web_python_other
+      title: Other Python framework
+    - name: web_java
+      title: Any Java server framework
+    - name: web_csharp
+      title: Any C# server framework
+    - name: web_cplusplus
+      title: Any C++ server framework
+
+- title: "GIS or Geographic Software"
+  prologue: "How familiar are you with ..."
+  content-type: range
+  values: [none, some, extensive]
+  content:
+    - name: arcgis
+      title: ArcGIS
+    - name: esri
+      title: Other ESRI applications
+    - name: leaflet
+      title: Leaflet.js
+    - name: openlayers
+      title: OpenLayers
+    - name: gmaps
+      title: Adding custom data to Google maps, Bing maps, etc
+    - name: other_gis
+      title: Other GIS software (as a user)
+    - name: other_gis_scripting
+      title: Other GIS software (as a developer)
+
+- title: "Optional notes"
+  prologue: ""
+- title: ""
+  prologue: ""
+  content-type: paragraph
+  content:
+    - name: teammates
+      title: "Are there classmates you would particularly like to have as teammates?"
+- title: ""
+  content-type: paragraph
+  content:
+    - name: tech_learn
+      title: "Are there technical topics you would particularly like to learn from classmates?"
+- title: ""
+  content-type: paragraph
+  content:
+    - name: tech_teach
+      title: "Are there technical topics you would like to present to classmates?"
+- title: ""
+  content-type: paragraph
+  content:
+    - name: anything_else
+      title: "Anything else you would like me to know?"
+
+

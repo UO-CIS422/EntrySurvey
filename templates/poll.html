@@ -1,0 +1,119 @@
+<html lang="en"> <head>
+<meta charset="utf-8">
+
+<title>CIS 422 survey</title>
+
+<!-- Javascript and Cascading Style Sheets (css) libraries -->
+<!-- mostly from content delivery networks                 -->
+
+<!-- jquery; CDN load is usually quick because it's likely cached -->
+<script type="text/javascript"
+     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+
+<!-- Bootstrap stylesheet let's us have a 'responsive' layout; -->
+<!-- 12 column grid rearranges itself for smaller screens or windows. -->
+
+
+<!-- Our own css file.  Note how we can link directly here and not -->
+<!-- write any routing code in the Flask application. -->
+<link rel="stylesheet" href="/static/css/poll.css" />
+
+<!-- And an icon for the tab and bookmark -->
+<link rel="shortcut icon" type="image/png" href="/static/img/checkbox.png" />
+
+
+</head>
+
+<body>
+
+  <h2>CIS 422 Entry Survey</h2>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <!-- Mismatch, already found, etc. "flashed" from Python -->
+    {% for message in messages %}
+      <p class="message">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+
+<form action="/_submit" method="POST">
+
+
+<!-- Hard-coded parts because I haven't worked out how to drive
+  -- these from a YAML file yet. ID here just for nice ordering.
+  -->
+
+
+<label for="name">Your name</label>
+    <input name="name" id="name" size="40" autofocus />
+
+<div class="poll_section">
+<h3>Meetings times</h3>
+<div>
+<label>Available times for team meetings</label>
+<table>
+    <thead><tr>
+        <th> </th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th>
+    </tr></thead>
+    {% set times = ["8-10", "10-12", "12-2", "2-4", "4-6", "Later"] %}
+    {% set days = ["Mon", "Tue", "Wed", "Thu", "Fri"] %}
+    {% for time in times %}
+    <tr>
+        <td>{{ time }}</td>
+        {%  for day in days %}
+        <td><input type="checkbox" name="available"
+	        value="{{day}}{{time}}" checked /> </td>
+        {%  endfor %}
+    </tr>
+    {%  endfor %}
+</table>
+    <label for="satam">Saturday morning</label>
+    <input type="checkbox" name="available" value="SatAM" id="satam">
+    <label for="satam">Saturday afternoon</label>
+    <input type="checkbox" name="available" value="SatPM" id="satpm">
+    <br />
+    <label for="sunam">Sunday morning</label>
+    <input type="checkbox" name="available" value="SunAM" id="sunam">
+    <label for="satam">Sunday afternoon</label>
+    <input type="checkbox" name="available" value="SunPM" id="sunpm">
+</div>
+</div>
+{%  for section in g.poll %}
+    <div class="poll_section">
+    <h3>{{ section["title"]}}</h3>
+    <p>{{ section["prologue"] }}</p>
+    <div class="poll_question_group">
+    {%  set kind = section["content-type"] %}
+    {%  for q in section["content"] %}
+        <div class="poll_question">
+            <label for="{{ q["name"] }}">{{ q["title"] }}</label>
+            <br />
+            {% if kind == "text" %}
+                      <input name="{{ q["name"] }}"
+                             size="30" autofocus  />
+            {%  elif kind == "range" %}
+                <select name="{{ q["name"] }}">
+                {%  for val in section["values"] %}
+                    <option value="{{ val }}">{{ val }}</option>
+                {%  endfor %}
+                </select>
+            {%  elif kind == "paragraph" %}
+                <textarea name="{{ q["name"] }}" rows="5" cols="72"
+                    placeholder="optional"></textarea>
+            {% endif %}
+        </div> <!-- poll_question -->
+    {%  endfor %}
+    </div> <!-- poll_question_group -->
+    </div> <!-- poll_section -->
+{% endfor %}
+
+
+<input type="submit" />
+</form>
+
+
+</body> </html>

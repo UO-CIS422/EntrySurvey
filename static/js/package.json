@@ -1,0 +1,21 @@
+{
+  "name": "xperiment",
+  "version": "1.0.0",
+  "description": "An experiment in using web components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress"
+  },
+  "keywords": [
+    "Experimental"
+  ],
+  "author": "Michal Young",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-slider": "^3.0.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

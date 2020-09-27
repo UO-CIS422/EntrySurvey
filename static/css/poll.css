@@ -1,0 +1,30 @@
+/* Surveys of students */
+
+body {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode',
+        'Geneva', 'Verdana', sans-serif;
+    padding: 1em;
+}
+
+.poll_section {
+    background-color: #fffbf0;
+    border-top: 1pt solid #d1d0cd;
+    margin-top: 1ex;
+    margin-bottom: 2ex;
+}
+
+.poll_question_group {
+    /* border-left: 1px solid slategrey; */
+    margin-left: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-end;
+    /* justify-content: space-between; */
+}
+
+.poll_question {
+    /* background-color: blueviolet; */
+    margin: 0.5em;
+    width: 15em;
+    flex: none;
+}
